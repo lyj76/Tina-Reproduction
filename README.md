@@ -17,7 +17,7 @@
   <br>
 
   <p>
-    <b>🌐 Language</b>: <b>🇨🇳 中文说明 (当前)</b> | <a href="README_en.md"><b>🇬🇧 English Upstream README</b></a>
+    <b>🌐 Language</b>: <b>🇨🇳 中文完整复现报告 (当前)</b> | <a href="README_en.md"><b>🇬🇧 English Reproduction Report</b></a>
   </p>
 </div>
 
