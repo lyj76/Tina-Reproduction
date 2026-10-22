@@ -21,13 +21,24 @@
   </p>
 </div>
 
+<!-- 顶栏核心实验大图 / Hero Figure -->
+<div align="center">
+  <img src="assets/reproduction_hero.png" alt="Tina Reproduction & Mechanistic Audit on 2x RTX 4090" width="100%" style="border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+  <p><sub><b>图 1：双卡 RTX 4090 平台 Tina 全流程复现主图</b> —— (A) 六大数学与推理基准评测对比；(B) 工业级集群 L40S 与本地双卡 4090 思维链长度扩展动态；(C) 消费级硬件与“纯格式奖励”机制核验要点。</sub></p>
+</div>
+
 ---
 
 ## 📌 项目概述 (Overview)
 
-本项目是对学术论文 [《Tina: Tiny Reasoning Models via LoRA》](https://arxiv.org/abs/2504.15777) 的**独立、端到端全流程复现与机制核验工程**。
+本项目是对学术论文 [《Tina: Tiny Reasoning Models via LoRA》](https://arxiv.org/abs/2504.15777)（ICLR 2026）的**独立、端到端全流程复现与机制核验工程**。
 
 原论文提出了一个核心问题：**“如何以高性价比的强化学习方案，在小参数量模型中高效注入强推理能力？”** 官方通过在 `DeepSeek-R1-Distill-Qwen-1.5B` 上使用 LoRA 进行 GRPO（Group Relative Policy Optimization）训练，声称仅耗费极少算力即可匹敌全参数强化学习的效果，并提出了一种无需参考答案标签的“纯格式奖励（Format-only）”机制。
+
+<div align="center">
+  <img src="assets/overall_comparison.png" alt="Official Paper Figure 1" width="95%">
+  <p><sub><i>图 2：原论文 Figure 1 —— Tina 官方声称以超低算力成本（14小时 / $14）实现比肩全参数模型（DeepScaleR / STILL-3）的推理表现</i></sub></p>
+</div>
 
 为了验证其可重复性与底层机理，本项目在 **双卡消费级显卡 NVIDIA GeForce RTX 4090（24GB × 2 = 48GB）** 环境下，开展了从训练环境搭建、LoRA-GRPO 强化学习、全量基准对齐评测到机制消融的完整复现实验。
 
