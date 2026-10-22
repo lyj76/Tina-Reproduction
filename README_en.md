@@ -229,8 +229,8 @@ We acknowledge and thank Shangshang Wang and the co-authors for open-sourcing th
 If our reproduction, engineering recipes, or mechanistic findings assist your research, please consider citing this repository:
 
 ```bibtex
-@misc{lyj2026tina_reproduction,
-  author = {Yujie Liu},
+@misc{luo2026tina_reproduction,
+  author = {Yongjian Luo},
   title = {Tina: Tiny Reasoning Models via LoRA — Full Reproduction, Benchmark Evaluation, and Mechanistic Audit on Dual Modified RTX 4090 (96GB)},
   year = {2026},
   publisher = {GitHub},
