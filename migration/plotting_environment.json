@@ -1,0 +1,10 @@
+{
+  "captured_utc": "2026-10-21T05:47:14.815491+00:00",
+  "executable": "/root/miniconda3/bin/python",
+  "python": "3.12.3 | packaged by Anaconda, Inc. | (main, May  6 2024, 19:46:43) [GCC 11.2.0]",
+  "packages": {
+    "matplotlib": "3.10.5",
+    "numpy": "2.3.2"
+  },
+  "usage": "CPU-only plotting; not used for training or inference."
+}

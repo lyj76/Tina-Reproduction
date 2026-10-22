@@ -1,5 +1,5 @@
 import datasets
-from datasets import Dataset, load_dataset
+from datasets import Dataset, load_dataset, load_from_disk
 from datetime import datetime
 import json
 import logging
@@ -7,6 +7,7 @@ import os
 from peft import get_peft_model, LoraConfig, TaskType
 import random
 import sys
+import time
 import torch
 import transformers
 from transformers import set_seed, AutoModelForCausalLM, AutoTokenizer
@@ -79,6 +80,8 @@ def main():
         ckpt_postfix = f"{pt_args.model_post_train_type}_{pt_args.model_post_train_dataset_name}"
     else:
         ckpt_postfix = f"full_{pt_args.model_post_train_type}_{pt_args.model_post_train_dataset_name}"
+    if os.environ.get("TINA_RUN_NAME"):
+        ckpt_postfix = os.environ["TINA_RUN_NAME"]
 
     model_args.model_name_or_path = f"{ckpt_prefix}/base"
     training_args.output_dir = f"{ckpt_prefix}/{ckpt_postfix}"
@@ -99,7 +102,9 @@ def main():
     tokenizer.chat_template = REASON_CHAT_TEMPLATE
 
     model_post_train_dataset_name = RL_POST_TRAIN_CONFIG_MAP[pt_args.model_post_train_dataset_name]
-    if pt_args.model_post_train_dataset_config is not None:
+    if os.environ.get("TINA_LOCAL_TRAIN_DATA"):
+        train_dataset = load_from_disk(os.environ["TINA_LOCAL_TRAIN_DATA"])
+    elif pt_args.model_post_train_dataset_config is not None:
         train_dataset = load_dataset(model_post_train_dataset_name, split="train", name=pt_args.model_post_train_dataset_config)
     else:
         train_dataset = load_dataset(model_post_train_dataset_name, split="train")
@@ -184,6 +189,10 @@ def main():
             bias="none",
             task_type=TaskType.CAUSAL_LM)
         model = get_peft_model(model, peft_config)
+        model.print_trainable_parameters()
+        trainable_names = [name for name, param in model.named_parameters() if param.requires_grad]
+        if not trainable_names or any("lora_" not in name for name in trainable_names):
+            raise RuntimeError("Expected only LoRA parameters to be trainable")
 
     #############################
     # Initialize the GRPO trainer
@@ -224,6 +233,42 @@ def main():
             # PushToHubRevisionCallback(dataset_name=pt_args.model_post_train_dataset_name, use_peft=model_args.use_peft)
         ]
 
+    if os.environ.get("TINA_DISABLE_FIXED_EVAL") == "1":
+        callbacks = []
+
+    stop_step = int(os.environ.get("TINA_STOP_STEP", "0"))
+    if stop_step:
+        class StopAtStep(transformers.TrainerCallback):
+            def on_step_end(self, args, state, control, **kwargs):
+                if state.global_step >= stop_step:
+                    control.should_training_stop = True
+                    control.should_save = True
+                return control
+        callbacks.append(StopAtStep())
+
+    if os.environ.get("TINA_RESOURCE_LOG") == "1":
+        class LocalResourceLog(transformers.TrainerCallback):
+            def on_train_begin(self, args, state, control, **kwargs):
+                self.started = time.monotonic()
+
+            def on_step_end(self, args, state, control, **kwargs):
+                if state.global_step <= 3 or state.global_step % 10 == 0:
+                    record = {
+                        "step": state.global_step,
+                        "rank": args.local_rank,
+                        "elapsed_seconds": time.monotonic() - self.started,
+                        "allocated_gib": torch.cuda.memory_allocated() / 2**30,
+                        "reserved_gib": torch.cuda.memory_reserved() / 2**30,
+                        "peak_allocated_gib": torch.cuda.max_memory_allocated() / 2**30,
+                        "peak_reserved_gib": torch.cuda.max_memory_reserved() / 2**30,
+                    }
+                    os.makedirs(args.output_dir, exist_ok=True)
+                    path = os.path.join(args.output_dir, f"resources_rank{args.local_rank}.jsonl")
+                    with open(path, "a") as output:
+                        output.write(json.dumps(record) + "\n")
+                return control
+        callbacks.append(LocalResourceLog())
+
     trainer = GRPOTrainer(
         model=model,
         processing_class=tokenizer,
@@ -254,7 +299,9 @@ def main():
     trainer.log_metrics("train", train_metrics)
     trainer.save_metrics("train", train_metrics)
     trainer.save_state()
-    trainer.push_to_hub(commit_message=f"Add checkpoint {training_args.max_steps} post-trained on {pt_args.model_post_train_dataset_name}")
+    trainer.save_model()
+    if training_args.push_to_hub:
+        trainer.push_to_hub(commit_message=f"Add checkpoint {trainer.state.global_step} post-trained on {pt_args.model_post_train_dataset_name}")
 
     del trainer
     torch.cuda.empty_cache()

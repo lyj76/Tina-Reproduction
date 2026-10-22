@@ -1,0 +1,15 @@
+ M .gitignore
+ M tina/post_train_hf/grpo.py
+?? ARTIFACTS.md
+?? ATTRIBUTION.md
+?? CORE_EXPERIMENTS.md
+?? ENDPOINT850.md
+?? HANDOFF.md
+?? MECHANISM.md
+?? MECHANISM_STAGE1.md
+?? MIGRATION.md
+?? RECHECK.md
+?? REPORT.md
+?? TRAJECTORY.md
+?? migration/
+?? reproduction/

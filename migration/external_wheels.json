@@ -1,0 +1,47 @@
+[
+  {
+    "path": "flash_attn-2.7.3+cu11torch2.5cxx11abiFALSE-cp310-cp310-linux_x86_64.whl",
+    "bytes": 193164873,
+    "sha256": "90b92074ec1ae12b96c0ce4c8c3c9078b9a52422bcf3f4233e865d4bccee3edc"
+  },
+  {
+    "path": "vllm-0.7.2+cu118-cp38-abi3-manylinux1_x86_64.whl",
+    "bytes": 197572010,
+    "sha256": "844d467ced94ba6b45a1627386f898da5b54b1fa9f8fd8894998c812696216f3"
+  },
+  {
+    "path": "wheels/nvidia_cuda_cupti_cu11-11.8.87-py3-none-manylinux1_x86_64.whl",
+    "bytes": 13093657,
+    "sha256": "0e50c707df56c75a2c0703dc6b886f3c97a22f37d6f63839f75b7418ba672a8d"
+  },
+  {
+    "path": "wheels/nvidia_cuda_nvrtc_cu11-11.8.89-py3-none-manylinux1_x86_64.whl",
+    "bytes": 23173264,
+    "sha256": "1f27d67b0f72902e9065ae568b4f6268dfe49ba3ed269c9a3da99bb86d1d2008"
+  },
+  {
+    "path": "wheels/nvidia_cuda_runtime_cu11-11.8.89-py3-none-manylinux1_x86_64.whl",
+    "bytes": 875585,
+    "sha256": "f587bd726eb2f7612cf77ce38a2c1e65cf23251ff49437f6161ce0d647f64f7c"
+  },
+  {
+    "path": "wheels/nvidia_cudnn_cu11-9.1.0.70-py3-none-manylinux2014_x86_64.whl",
+    "bytes": 663919573,
+    "sha256": "e6135ac63fe9d5b0b89cfb35c3fc1c1349f2b995becadf2e9dc21bca89d9633d"
+  },
+  {
+    "path": "wheels/torch-2.5.1+cu118-cp310-cp310-linux_x86_64.whl",
+    "bytes": 838332639,
+    "sha256": "eee38239682a01ab02d3790fe194753f7070f07e1741e67fb5c3c3059d3b97b2"
+  },
+  {
+    "path": "wheels/torchaudio-2.5.1+cu118-cp310-cp310-linux_x86_64.whl",
+    "bytes": 3309275,
+    "sha256": "4115b11f7748da407e1d59d14c6fa2ff5853155c42178ef7a5e7a36e967c1242"
+  },
+  {
+    "path": "wheels/torchvision-0.20.1+cu118-cp310-cp310-linux_x86_64.whl",
+    "bytes": 6544347,
+    "sha256": "2a0b9fee398ed0dba1cee48dee31d80981420393f8b5c7980e273eb85fc6b9cb"
+  }
+]

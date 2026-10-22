@@ -1,0 +1,101 @@
+[
+  {
+    "path": "logs/wandb/offline-run-20261016_132130-daq91eav/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261016_132130.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261016_132130.log"
+  },
+  {
+    "path": "logs/wandb/offline-run-20261016_132325-dra0hgeg/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261016_132325.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261016_132325.log"
+  },
+  {
+    "path": "logs/wandb/offline-run-20261016_132612-tebuf6pz/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261016_132612.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261016_132612.log"
+  },
+  {
+    "path": "logs/wandb/offline-run-20261016_134258-xpmhezla/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261016_134258.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261016_134258.log"
+  },
+  {
+    "path": "logs/wandb/offline-run-20261017_223341-4h5uujhz/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261017_223341.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261017_223341.log"
+  },
+  {
+    "path": "logs/wandb/offline-run-20261017_223958-730d5tqx/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261017_223958.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261017_223958.log"
+  },
+  {
+    "path": "logs/wandb/offline-run-20261018_012214-c40rg0dv/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261018_012214.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261018_012214.log"
+  },
+  {
+    "path": "logs/wandb/offline-run-20261018_164306-05730l3u/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261018_164306.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261018_164306.log"
+  },
+  {
+    "path": "logs/wandb/offline-run-20261019_204831-pv9csyio/logs/debug-core.log",
+    "target": "/root/.cache/wandb/logs/core-debug-20261019_204831.log",
+    "exists": true,
+    "snapshot": "migration/external_debug_logs/core-debug-20261019_204831.log"
+  },
+  {
+    "path": "artifacts/recheck/eval_env/bin/python",
+    "target": "/root/autodl-tmp/envs/tina/bin/python3.10",
+    "exists": true
+  },
+  {
+    "path": "artifacts/recheck/eval_env/bin/python3",
+    "target": "/root/autodl-tmp/envs/tina/bin/python3.10",
+    "exists": true
+  },
+  {
+    "path": "artifacts/recheck/eval_env/bin/python3.10",
+    "target": "/root/autodl-tmp/envs/tina/bin/python3.10",
+    "exists": true
+  },
+  {
+    "path": "artifacts/trajectory/setup_python312/bin/python",
+    "target": "/root/miniconda3/bin/python3.12",
+    "exists": true
+  },
+  {
+    "path": "artifacts/trajectory/setup_python312/bin/python3",
+    "target": "/root/miniconda3/bin/python3.12",
+    "exists": true
+  },
+  {
+    "path": "artifacts/trajectory/setup_python312/bin/python3.12",
+    "target": "/root/miniconda3/bin/python3.12",
+    "exists": true
+  },
+  {
+    "path": "artifacts/trajectory/author_env/bin/python",
+    "target": "/root/autodl-tmp/envs/tina/bin/python3.10",
+    "exists": true
+  },
+  {
+    "path": "artifacts/trajectory/author_env/bin/python3",
+    "target": "/root/autodl-tmp/envs/tina/bin/python3.10",
+    "exists": true
+  },
+  {
+    "path": "artifacts/trajectory/author_env/bin/python3.10",
+    "target": "/root/autodl-tmp/envs/tina/bin/python3.10",
+    "exists": true
+  }
+]

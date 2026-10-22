@@ -1,0 +1,55 @@
+model,label,task,samples,correct,accuracy,accuracy_percent,summary_path
+base,基座,aime24,30,10,0.3333333333333333,33.33333333333333,artifacts/recheck/official_pipeline_base/aime24/summary.json
+base,基座,aime25,30,5,0.16666666666666666,16.666666666666664,artifacts/core_suite/base/aime25/summary.json
+base,基座,amc23,40,30,0.75,75.0,artifacts/recheck/official_pipeline_base/amc23/summary.json
+base,基座,math_500,500,417,0.834,83.39999999999999,artifacts/recheck/official_pipeline_base/math_500/summary.json
+base,基座,gpqa:diamond,198,71,0.35858585858585856,35.858585858585855,artifacts/core_suite/base/gpqa_diamond/summary.json
+base,基座,minerva,272,79,0.29044117647058826,29.044117647058826,artifacts/core_suite/base/minerva/summary.json
+local850,本地RS3 850步,aime24,30,12,0.4,40.0,artifacts/endpoint850/aime24/summary.json
+local850,本地RS3 850步,aime25,30,3,0.1,10.0,artifacts/core_suite/local850/aime25/summary.json
+local850,本地RS3 850步,amc23,40,31,0.775,77.5,artifacts/endpoint850/amc23/summary.json
+local850,本地RS3 850步,math_500,500,427,0.854,85.39999999999999,artifacts/endpoint850/math_500/summary.json
+local850,本地RS3 850步,gpqa:diamond,198,81,0.4090909090909091,40.909090909090914,artifacts/core_suite/local850/gpqa_diamond/summary.json
+local850,本地RS3 850步,minerva,272,88,0.3235294117647059,32.35294117647059,artifacts/core_suite/local850/minerva/summary.json
+local500,本地RS3 500步,aime24,30,13,0.43333333333333335,43.333333333333336,artifacts/recheck/official_pipeline_local500/aime24/summary.json
+local500,本地RS3 500步,aime25,30,6,0.2,20.0,artifacts/core_suite/local500/aime25/summary.json
+local500,本地RS3 500步,amc23,40,32,0.8,80.0,artifacts/recheck/official_pipeline_local500/amc23/summary.json
+local500,本地RS3 500步,math_500,500,416,0.832,83.2,artifacts/recheck/official_pipeline_local500/math_500/summary.json
+local500,本地RS3 500步,gpqa:diamond,198,75,0.3787878787878788,37.878787878787875,artifacts/core_suite/local500/gpqa_diamond/summary.json
+local500,本地RS3 500步,minerva,272,88,0.3235294117647059,32.35294117647059,artifacts/core_suite/local500/minerva/summary.json
+official500,作者RS3 500步权重,aime24,30,10,0.3333333333333333,33.33333333333333,artifacts/recheck/official_pipeline_official500/aime24/summary.json
+official500,作者RS3 500步权重,aime25,30,7,0.23333333333333334,23.333333333333332,artifacts/core_suite/official500/aime25/summary.json
+official500,作者RS3 500步权重,amc23,40,28,0.7,70.0,artifacts/recheck/official_pipeline_official500/amc23/summary.json
+official500,作者RS3 500步权重,math_500,500,428,0.856,85.6,artifacts/recheck/official_pipeline_official500/math_500/summary.json
+official500,作者RS3 500步权重,gpqa:diamond,198,74,0.37373737373737376,37.37373737373738,artifacts/core_suite/official500/gpqa_diamond/summary.json
+official500,作者RS3 500步权重,minerva,272,81,0.2977941176470588,29.77941176470588,artifacts/core_suite/official500/minerva/summary.json
+rs2_450,本地RS2 450步,aime24,30,12,0.4,40.0,artifacts/core_suite/rs2_450/aime24/summary.json
+rs2_450,本地RS2 450步,aime25,30,5,0.16666666666666666,16.666666666666664,artifacts/core_suite/rs2_450/aime25/summary.json
+rs2_450,本地RS2 450步,amc23,40,29,0.725,72.5,artifacts/core_suite/rs2_450/amc23/summary.json
+rs2_450,本地RS2 450步,math_500,500,430,0.86,86.0,artifacts/core_suite/rs2_450/math_500/summary.json
+rs2_450,本地RS2 450步,gpqa:diamond,198,76,0.3838383838383838,38.38383838383838,artifacts/core_suite/rs2_450/gpqa_diamond/summary.json
+rs2_450,本地RS2 450步,minerva,272,86,0.3161764705882353,31.61764705882353,artifacts/core_suite/rs2_450/minerva/summary.json
+official_format_500,作者格式配方 本地500步,aime24,30,13,0.43333333333333335,43.333333333333336,artifacts/mechanism/official_format/eval500/aime24/summary.json
+official_format_500,作者格式配方 本地500步,aime25,30,9,0.3,30.0,artifacts/mechanism/official_format/eval500/aime25/summary.json
+official_format_500,作者格式配方 本地500步,amc23,40,29,0.725,72.5,artifacts/mechanism/official_format/eval500/amc23/summary.json
+official_format_500,作者格式配方 本地500步,math_500,500,426,0.852,85.2,artifacts/mechanism/official_format/eval500/math_500/summary.json
+official_format_500,作者格式配方 本地500步,gpqa:diamond,198,75,0.3787878787878788,37.878787878787875,artifacts/mechanism/official_format/eval500/gpqa_diamond/summary.json
+official_format_500,作者格式配方 本地500步,minerva,272,82,0.3014705882352941,30.14705882352941,artifacts/mechanism/official_format/eval500/minerva/summary.json
+official_format_850,作者格式配方 本地850步,aime24,30,10,0.3333333333333333,33.33333333333333,artifacts/mechanism/official_format/eval850/aime24/summary.json
+official_format_850,作者格式配方 本地850步,aime25,30,9,0.3,30.0,artifacts/mechanism/official_format/eval850/aime25/summary.json
+official_format_850,作者格式配方 本地850步,amc23,40,27,0.675,67.5,artifacts/mechanism/official_format/eval850/amc23/summary.json
+official_format_850,作者格式配方 本地850步,math_500,500,429,0.858,85.8,artifacts/mechanism/official_format/eval850/math_500/summary.json
+official_format_850,作者格式配方 本地850步,gpqa:diamond,198,65,0.3282828282828283,32.82828282828283,artifacts/mechanism/official_format/eval850/gpqa_diamond/summary.json
+official_format_850,作者格式配方 本地850步,minerva,272,77,0.28308823529411764,28.308823529411764,artifacts/mechanism/official_format/eval850/minerva/summary.json
+label_free_format_500,去除答案依赖 本地500步,aime24,30,9,0.3,30.0,artifacts/mechanism/label_free_format/eval500/aime24/summary.json
+label_free_format_500,去除答案依赖 本地500步,aime25,30,6,0.2,20.0,artifacts/mechanism/label_free_format/eval500/aime25/summary.json
+label_free_format_500,去除答案依赖 本地500步,amc23,40,31,0.775,77.5,artifacts/mechanism/label_free_format/eval500/amc23/summary.json
+label_free_format_500,去除答案依赖 本地500步,math_500,500,420,0.84,84.0,artifacts/mechanism/label_free_format/eval500/math_500/summary.json
+label_free_format_500,去除答案依赖 本地500步,gpqa:diamond,198,72,0.36363636363636365,36.36363636363637,artifacts/mechanism/label_free_format/eval500/gpqa_diamond/summary.json
+label_free_format_500,去除答案依赖 本地500步,minerva,272,78,0.2867647058823529,28.676470588235293,artifacts/mechanism/label_free_format/eval500/minerva/summary.json
+label_free_format_850,去除答案依赖 本地850步,aime24,30,8,0.26666666666666666,26.666666666666668,artifacts/mechanism/label_free_format/eval850/aime24/summary.json
+label_free_format_850,去除答案依赖 本地850步,aime25,30,7,0.23333333333333334,23.333333333333332,artifacts/mechanism/label_free_format/eval850/aime25/summary.json
+label_free_format_850,去除答案依赖 本地850步,amc23,40,28,0.7,70.0,artifacts/mechanism/label_free_format/eval850/amc23/summary.json
+label_free_format_850,去除答案依赖 本地850步,math_500,500,427,0.854,85.39999999999999,artifacts/mechanism/label_free_format/eval850/math_500/summary.json
+label_free_format_850,去除答案依赖 本地850步,gpqa:diamond,198,62,0.31313131313131315,31.313131313131315,artifacts/mechanism/label_free_format/eval850/gpqa_diamond/summary.json
+label_free_format_850,去除答案依赖 本地850步,minerva,272,80,0.29411764705882354,29.411764705882355,artifacts/mechanism/label_free_format/eval850/minerva/summary.json

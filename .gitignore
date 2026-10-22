@@ -172,5 +172,9 @@ cython_debug/
 # Ruff stuff:
 .ruff_cache/
 
+# Local reproduction data, weights, checkpoints, and offline run logs
+/artifacts/
+/logs/
+
 # PyPI configuration file
 .pypirc

@@ -1,0 +1,65 @@
+[
+  {
+    "model": "base",
+    "label": "基座",
+    "six_benchmark_mean": 0.45550450584274116,
+    "accuracy_percent": 45.55045058427412,
+    "delta_to_base_pp": 0.0
+  },
+  {
+    "model": "local850",
+    "label": "本地RS3 850步",
+    "six_benchmark_mean": 0.4769367201426025,
+    "accuracy_percent": 47.69367201426025,
+    "delta_to_base_pp": 2.143221429986136
+  },
+  {
+    "model": "local500",
+    "label": "本地RS3 500步",
+    "six_benchmark_mean": 0.49460843731431975,
+    "accuracy_percent": 49.46084373143197,
+    "delta_to_base_pp": 3.9103931471578592
+  },
+  {
+    "model": "official500",
+    "label": "作者RS3 500步权重",
+    "six_benchmark_mean": 0.4656996930085165,
+    "accuracy_percent": 46.569969300851646,
+    "delta_to_base_pp": 1.0195187165775332
+  },
+  {
+    "model": "rs2_450",
+    "label": "本地RS2 450步",
+    "six_benchmark_mean": 0.47528025351554753,
+    "accuracy_percent": 47.52802535155475,
+    "delta_to_base_pp": 1.9775747672806376
+  },
+  {
+    "model": "official_format_500",
+    "label": "作者格式配方 本地500步",
+    "six_benchmark_mean": 0.49843196672608436,
+    "accuracy_percent": 49.843196672608435,
+    "delta_to_base_pp": 4.2927460883343205
+  },
+  {
+    "model": "official_format_850",
+    "label": "作者格式配方 本地850步",
+    "six_benchmark_mean": 0.4629507328183799,
+    "accuracy_percent": 46.295073281837986,
+    "delta_to_base_pp": 0.7446226975638737
+  },
+  {
+    "model": "label_free_format_500",
+    "label": "去除答案依赖 本地500步",
+    "six_benchmark_mean": 0.4609001782531194,
+    "accuracy_percent": 46.09001782531194,
+    "delta_to_base_pp": 0.5395672410378249
+  },
+  {
+    "model": "label_free_format_850",
+    "label": "去除答案依赖 本地850步",
+    "six_benchmark_mean": 0.44354149336502274,
+    "accuracy_percent": 44.354149336502275,
+    "delta_to_base_pp": -1.1963012477718415
+  }
+]
