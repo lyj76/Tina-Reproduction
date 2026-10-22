@@ -9,6 +9,7 @@
     <a href="https://arxiv.org/abs/2504.15777"><img src="https://img.shields.io/badge/Paper-arXiv%3A2504.15777-B31B1B.svg" alt="Paper"></a>
     <a href="https://github.com/shangshang-wang/Tina"><img src="https://img.shields.io/badge/Upstream-shangshang--wang%2FTina-blue.svg?logo=github" alt="Upstream"></a>
     <a href="https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"><img src="https://img.shields.io/badge/Base_Model-Qwen--1.5B-yellow.svg?logo=huggingface" alt="Base Model"></a>
+    <img src="https://img.shields.io/badge/Hardware-2%C3%97_RTX_4090_(48GB)-76B900.svg?logo=nvidia&logoColor=white" alt="Hardware">
     <img src="https://img.shields.io/badge/Algorithm-LoRA_%2B_GRPO-green.svg" alt="Algorithm">
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-lightgrey.svg" alt="License"></a>
   </div>
@@ -28,7 +29,7 @@
 
 原论文提出了一个核心问题：**“如何以高性价比的强化学习方案，在小参数量模型中高效注入强推理能力？”** 官方通过在 `DeepSeek-R1-Distill-Qwen-1.5B` 上使用 LoRA 进行 GRPO（Group Relative Policy Optimization）训练，声称仅耗费极少算力即可匹敌全参数强化学习的效果，并提出了一种无需参考答案标签的“纯格式奖励（Format-only）”机制。
 
-为了验证其可重复性与底层机理，本项目在双卡 48GB GPU 环境下，开展了从训练环境搭建、LoRA-GRPO 强化学习、全量基准对齐评测到机制消融的完整复现实验。
+为了验证其可重复性与底层机理，本项目在 **双卡消费级显卡 NVIDIA GeForce RTX 4090（24GB × 2 = 48GB）** 环境下，开展了从训练环境搭建、LoRA-GRPO 强化学习、全量基准对齐评测到机制消融的完整复现实验。
 
 ---
 
@@ -91,11 +92,12 @@
 
 ## 🛠️ 复现指南与避坑经验 (Practical Recipes)
 
-在算力受限（如双卡 48GB GPU）环境下复现大模型强化学习时，原作者代码存在若干工程痛点，我们在本项目中提供了对应解决方案：
+在消费级硬件（双卡 NVIDIA GeForce RTX 4090 24GB × 2）环境下复现小模型强化学习时，原作者代码存在若干工程痛点，我们在本项目中提供了针对性的解决方案：
 
-### 1. 显存避坑：vLLM 显存分配策略
-* **问题**：原仓库默认在双卡 48GB 环境下设置 `gpu_memory_utilization = 0.4`，在长文本推理（prompt 512 + completion 3584）反向传播阶段会频繁触发 PyTorch CUDA OOM。
-* **改进**：在 [`reproduction/open_rs3.yaml`](reproduction/open_rs3.yaml) 中将 `gpu_memory_utilization` 优化调整为 `0.25`，成功在完全保留 batch 6、梯度累积 4、每题生成 6 个候选项的全部原配方超参下实现零 OOM 稳定训练。
+### 1. 消费级硬件与显存避坑：双卡 RTX 4090 调优
+* **硬件配置**：2 × NVIDIA GeForce RTX 4090 (24GB × 2，共 48GB 显存)，消费级 GPU 平台。
+* **痛点问题**：原仓库默认设置 `gpu_memory_utilization = 0.4`，在双卡 4090 上跑长文本推理（prompt 512 + completion 3584）反向传播阶段会频繁触发 PyTorch CUDA OOM。
+* **调优方案**：在 [`reproduction/open_rs3.yaml`](reproduction/open_rs3.yaml) 中将 `gpu_memory_utilization` 精确调优至 `0.25`，成功在**消费级 4090 显卡**上完全保留 batch 6、梯度累积 4、每题生成 6 个候选项的全部原配方超参，实现零 OOM 稳定训练！
 
 ### 2. 评测严谨性：LightEval BF16 官方协议
 * 初轮评测若使用简化的单题判分脚本，容易因正则表达式或题型映射差异出现系统误差（详见 [`RECHECK.md`](RECHECK.md)）。
