@@ -9,7 +9,7 @@
     <a href="https://arxiv.org/abs/2504.15777"><img src="https://img.shields.io/badge/Paper-arXiv%3A2504.15777-B31B1B.svg" alt="Paper"></a>
     <a href="https://github.com/shangshang-wang/Tina"><img src="https://img.shields.io/badge/Upstream-shangshang--wang%2FTina-blue.svg?logo=github" alt="Upstream"></a>
     <a href="https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"><img src="https://img.shields.io/badge/Base_Model-Qwen--1.5B-yellow.svg?logo=huggingface" alt="Base Model"></a>
-    <img src="https://img.shields.io/badge/Hardware-2%C3%97_RTX_4090_(48GB)-76B900.svg?logo=nvidia&logoColor=white" alt="Hardware">
+    <img src="https://img.shields.io/badge/Hardware-2%C3%97_RTX_4090_48GB_(96GB)-76B900.svg?logo=nvidia&logoColor=white" alt="Hardware">
     <img src="https://img.shields.io/badge/Algorithm-LoRA_%2B_GRPO-green.svg" alt="Algorithm">
     <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache--2.0-lightgrey.svg" alt="License"></a>
   </div>
@@ -23,8 +23,8 @@
 
 <!-- 顶栏核心实验大图 / Hero Figure -->
 <div align="center">
-  <img src="assets/reproduction_hero.png" alt="Tina Reproduction & Mechanistic Audit on 2x RTX 4090" width="100%" style="border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
-  <p><sub><b>图 1：双卡 RTX 4090 平台 Tina 全流程复现主图</b> —— (A) 六大数学与推理基准评测对比；(B) 工业级集群 L40S 与本地双卡 4090 思维链长度扩展动态；(C) 消费级硬件与“纯格式奖励”机制核验要点。</sub></p>
+  <img src="assets/reproduction_hero.png" alt="Tina Reproduction & Mechanistic Audit on Dual Modified RTX 4090 48GB" width="100%" style="border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);">
+  <p><sub><b>图 1：双卡 4090 48G 改装卡（共 96GB 显存）平台 Tina 全流程复现主图</b> —— (A) 六大数学与推理基准评测对比；(B) 工业级集群 L40S 与本地双卡 4090 思维链长度扩展动态；(C) 消费级/改装卡硬件与“纯格式奖励”机制核验要点。</sub></p>
 </div>
 
 ---
@@ -40,7 +40,7 @@
   <p><sub><i>图 2：原论文 Figure 1 —— Tina 官方声称以超低算力成本（14小时 / $14）实现比肩全参数模型（DeepScaleR / STILL-3）的推理表现</i></sub></p>
 </div>
 
-为了验证其可重复性与底层机理，本项目在 **双卡消费级显卡 NVIDIA GeForce RTX 4090（24GB × 2 = 48GB）** 环境下，开展了从训练环境搭建、LoRA-GRPO 强化学习、全量基准对齐评测到机制消融的完整复现实验。
+为了验证其可重复性与底层机理，本项目在 **双卡 4090 改装卡（2 × NVIDIA GeForce RTX 4090 48GB，共 96GB 显存）** 环境下，开展了从训练环境搭建、LoRA-GRPO 强化学习、全量基准对齐评测到机制消融的完整复现实验。
 
 ---
 
@@ -103,12 +103,12 @@
 
 ## 🛠️ 复现指南与避坑经验 (Practical Recipes)
 
-在消费级硬件（双卡 NVIDIA GeForce RTX 4090 24GB × 2）环境下复现小模型强化学习时，原作者代码存在若干工程痛点，我们在本项目中提供了针对性的解决方案：
+在双卡 4090 48G 改装卡（2 × NVIDIA GeForce RTX 4090 48GB，共 96GB 显存）环境下复现小模型强化学习时，原作者代码存在若干工程痛点，我们在本项目中提供了针对性的解决方案：
 
-### 1. 消费级硬件与显存避坑：双卡 RTX 4090 调优
-* **硬件配置**：2 × NVIDIA GeForce RTX 4090 (24GB × 2，共 48GB 显存)，消费级 GPU 平台。
-* **痛点问题**：原仓库默认设置 `gpu_memory_utilization = 0.4`，在双卡 4090 上跑长文本推理（prompt 512 + completion 3584）反向传播阶段会频繁触发 PyTorch CUDA OOM。
-* **调优方案**：在 [`reproduction/open_rs3.yaml`](reproduction/open_rs3.yaml) 中将 `gpu_memory_utilization` 精确调优至 `0.25`，成功在**消费级 4090 显卡**上完全保留 batch 6、梯度累积 4、每题生成 6 个候选项的全部原配方超参，实现零 OOM 稳定训练！
+### 1. 硬件调优与显存避坑：双 48G 4090 改装卡高性价比实战
+* **硬件配置**：2 × NVIDIA GeForce RTX 4090 48GB 改装卡（双 48G = 共 96GB 大显存），高性价比科研利器。
+* **痛点问题**：原仓库默认设置 `gpu_memory_utilization = 0.4`，在长文本推理（prompt 512 + completion 3584）反向传播阶段会频繁触发 PyTorch CUDA OOM。
+* **调优方案**：在 [`reproduction/open_rs3.yaml`](reproduction/open_rs3.yaml) 中将 `gpu_memory_utilization` 精确调优至 `0.25`，成功在**双卡 48G 4090 改装卡**上完全保留 batch 6、梯度累积 4、每题生成 6 个候选项的全部原配方超参，实现零 OOM 稳定训练！96GB 超大显存完美承载了长程思维链（3584 tokens）的生成与梯度反向传播。
 
 ### 2. 评测严谨性：LightEval BF16 官方协议
 * 初轮评测若使用简化的单题判分脚本，容易因正则表达式或题型映射差异出现系统误差（详见 [`RECHECK.md`](RECHECK.md)）。

@@ -62,7 +62,7 @@ c_ablation = "#F43F5E"    # Rose red (Warning / Collapse)
 
 rects1 = ax_bars.bar(x - 1.5*width, base_scores, width, label="Base (Qwen-1.5B)", color=c_base, alpha=0.9, edgecolor="none", zorder=3)
 rects2 = ax_bars.bar(x - 0.5*width, author_scores, width, label="Author Official 500-step (L40S)", color=c_author, alpha=0.9, edgecolor="none", zorder=3)
-rects3 = ax_bars.bar(x + 0.5*width, local_4090_scores, width, label="Reproduction 500-step (2× RTX 4090)", color=c_4090, alpha=0.95, edgecolor="#047857", linewidth=1.2, zorder=4)
+rects3 = ax_bars.bar(x + 0.5*width, local_4090_scores, width, label="Reproduction 500-step (2× RTX 4090 48G)", color=c_4090, alpha=0.95, edgecolor="#047857", linewidth=1.2, zorder=4)
 rects4 = ax_bars.bar(x + 1.5*width, ablation_scores, width, label="True Label-Free Control (Ablation 850s)", color=c_ablation, alpha=0.85, edgecolor="none", zorder=3)
 
 # Add highlight separator line before Average
@@ -135,12 +135,12 @@ if official_file.exists() and local_file.exists():
     
     if len(loc_lens) >= w:
         ax_len.plot(loc_steps, loc_lens, color="#EA580C", alpha=0.15, lw=0.6)
-        ax_len.plot(loc_steps[w-1:], smooth_data(loc_lens, w), color="#EA580C", lw=2.0, label="Local Reproduction (2× RTX 4090)")
+        ax_len.plot(loc_steps[w-1:], smooth_data(loc_lens, w), color="#EA580C", lw=2.0, label="Local Reproduction (2× 4090 48G)")
     
     ax_len.axvline(500, color="#64748B", linestyle=":", lw=1.2)
     ax_len.text(508, 1200, "Optimal Step 500", color="#475569", fontsize=8, fontstyle="italic")
 
-ax_len.set_title("B. Thinking Length Expansion: Author L40S vs. Local 2× RTX 4090", fontweight="bold", loc="left", pad=8)
+ax_len.set_title("B. Thinking Length Expansion: Author L40S vs. Local Dual 4090 (48G×2)", fontweight="bold", loc="left", pad=8)
 ax_len.set_ylabel("Completion Tokens", fontweight="bold")
 ax_len.set_xlim(0, 850)
 ax_len.set_ylim(0, 3600)
@@ -158,12 +158,12 @@ card_bbox1 = patches.FancyBboxPatch((0.02, 0.52), 0.96, 0.44, boxstyle="round,pa
                                    facecolor="#F0FDF4", edgecolor="#86EFAC", linewidth=1.2)
 ax_card.add_patch(card_bbox1)
 
-ax_card.text(0.06, 0.86, "Hardware: Consumer Feasibility (2× RTX 4090 48GB)", 
+ax_card.text(0.06, 0.86, "Hardware: Dual Modified RTX 4090 (48GB × 2 = 96GB)", 
              fontweight="bold", fontsize=10.5, color="#166534")
 ax_card.text(0.06, 0.60, 
              "• Zero OOM via vLLM memory tuning: gpu_memory_utilization = 0.25\n"
              "• Full recipe fidelity: batch size 6, grad-acc 4, 6 rollouts per prompt\n"
-             "• Total post-training compute budget: ~$8.5 USD on commodity hardware", 
+             "• 96GB Massive VRAM: Perfectly accommodates long reasoning rollouts (3584 tok)", 
              fontsize=9, color="#14532D", linespacing=1.4)
 
 card_bbox2 = patches.FancyBboxPatch((0.02, 0.02), 0.96, 0.44, boxstyle="round,pad=0.03", 
@@ -178,8 +178,8 @@ ax_card.text(0.06, 0.10,
              "• Conclusion: Structural formatting alone is insufficient without answer grounding", 
              fontsize=9, color="#881337", linespacing=1.4)
 
-fig.suptitle("Tina (DeepSeek-R1-Distill-Qwen-1.5B via LoRA+GRPO): Full Reproduction & Mechanistic Audit on 2× RTX 4090", 
-             fontweight="bold", fontsize=13.5, y=1.01)
+fig.suptitle("Tina (DeepSeek-R1-Distill-Qwen-1.5B via LoRA+GRPO): Full Reproduction on Dual Modified RTX 4090 (48GB×2)", 
+             fontweight="bold", fontsize=13.0, y=1.01)
 
 # Save high-res PNG and vector SVG
 out_png = assets_dir / "reproduction_hero.png"
